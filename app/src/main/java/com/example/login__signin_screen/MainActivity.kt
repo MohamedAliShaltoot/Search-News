@@ -118,10 +118,10 @@ Button(colors = ButtonDefaults.buttonColors(Color.Black),border = BorderStroke(2
 }
     if (isSearched.value){
 
-        AlertDialog(iconContentColor = AlertDialogDefaults.iconContentColor,containerColor = Color.Cyan,title = {
-            Text(text = "please enter a valid topic", fontSize = 20.sp)
+        AlertDialog(iconContentColor = AlertDialogDefaults.iconContentColor,containerColor = Color.DarkGray,title = {
+            Text(text = "please enter a valid topic", fontSize = 20.sp,color = Color.White)
         },icon = {
-            Icon(imageVector = Icons.Default.Warning, contentDescription = null)
+            Icon(tint = Color.White,imageVector = Icons.Default.Warning, contentDescription = null)
         },onDismissRequest = { isSearched.value=false},confirmButton = {
             Button(colors = ButtonDefaults.buttonColors(Color.Black),border = BorderStroke(2.dp,Color.Black),onClick = {
                 Toast.makeText(this@MainActivity, "ok enter your topic", Toast.LENGTH_LONG).show()
