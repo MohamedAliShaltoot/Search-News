@@ -65,6 +65,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
+import coil.compose.AsyncImage
 import com.example.login__signin_screen.ui.theme.Login__SignIn_ScreenTheme
 
 
@@ -87,7 +88,16 @@ Column(modifier = Modifier
     .padding(10.dp), horizontalAlignment = Alignment.CenterHorizontally, verticalArrangement = Arrangement.Center) {
 
     OutlinedTextField(colors = OutlinedTextFieldDefaults.colors(Color.Black),trailingIcon = {
-        Icon(tint = Color.Black,imageVector = Icons.Default.Search, contentDescription = null)
+        Icon(modifier = Modifier.clickable {
+            if (topic.value.isEmpty()){
+                isSearched.value=true
+
+            } else
+            {
+                viewModel.getNews(topic.value)
+
+            }
+                                           },tint = Color.Black,imageVector = Icons.Default.Search, contentDescription = null)
     },label = {
         Text(text = "Search",color = Color.Black,fontWeight = FontWeight.Bold,fontSize = 15.sp)
     },placeholder = {
@@ -97,7 +107,7 @@ Column(modifier = Modifier
     })
     Spacer(modifier = Modifier.height(10.dp))
 
-Button(colors = ButtonDefaults.buttonColors(Color.Black),border = BorderStroke(2.dp,Color.Black),modifier = Modifier.fillMaxWidth(.5f),onClick = {
+Button(colors = ButtonDefaults.buttonColors(Color.Black),border = BorderStroke(2.dp,Color.Black),modifier = Modifier.fillMaxWidth(.6f),onClick = {
     if (topic.value.isEmpty()){
         isSearched.value=true
 
@@ -106,10 +116,6 @@ Button(colors = ButtonDefaults.buttonColors(Color.Black),border = BorderStroke(2
         viewModel.getNews(topic.value)
 
     }
-
-
-
-
 
 
 }) {
@@ -150,7 +156,7 @@ Button(colors = ButtonDefaults.buttonColors(Color.Black),border = BorderStroke(2
                     Text(text = it.content?:"No content",fontWeight = FontWeight.Bold,fontSize =10.sp,color = Color.Black)
                     Text(text = it.author?:"No author",fontWeight = FontWeight.Bold,fontSize = 10.sp,color = Color.Yellow)
                     Text(text = it.publishedAt?:"No publishedAt",fontWeight = FontWeight.Bold,fontSize = 10.sp,color = Color.Red)
-
+AsyncImage(model = it.urlToImage?:"No Image", contentDescription = null,modifier = Modifier.size(300.dp))
 
                 }
             }
