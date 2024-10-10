@@ -124,6 +124,7 @@ Button(colors = ButtonDefaults.buttonColors(Color.Black),border = BorderStroke(2
             Icon(imageVector = Icons.Default.Warning, contentDescription = null)
         },onDismissRequest = { isSearched.value=false},confirmButton = {
             Button(colors = ButtonDefaults.buttonColors(Color.Black),border = BorderStroke(2.dp,Color.Black),onClick = {
+                Toast.makeText(this@MainActivity, "ok enter your topic", Toast.LENGTH_LONG).show()
                 isSearched.value=false
             }){
                 Text(text = "Ok",color = Color.White)
@@ -132,7 +133,7 @@ Button(colors = ButtonDefaults.buttonColors(Color.Black),border = BorderStroke(2
 
             Button(colors = ButtonDefaults.buttonColors(Color.Black),border = BorderStroke(2.dp,Color.Black),onClick = {
 
-               Toast.makeText(this@MainActivity, "Enter the topic you want to search about it", Toast.LENGTH_SHORT).show()
+               Toast.makeText(this@MainActivity, "Enter the topic you want to search about it", Toast.LENGTH_LONG).show()
                 isSearched.value=false
             }){
                 Text(text = "I don't Understand",color = Color.White)
